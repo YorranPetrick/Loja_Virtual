@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Loja Virtual</string>
+    <string name="text_buttom_main">Get Started</string>
+
+
+    <string name="inicial_main_page">
+        <small>MAKE YOUR</small>\n<big><font color="#FF000000">HOME BEAUTIFUL</font></big>
+    </string>
+
+    <string name="log_in_wellcome">
+        <big>HELLO!</big>\n<big><font color="#FF000000">WELLCOME BACK</font></big>
+    </string>
+
+    <string name="apresentation_main_page">The best simple place where you discover most wonderful furnitures and make your home beautiful</string>
+
+</resources>
