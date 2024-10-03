@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_buttom_main"
+            android:textColor="@color/white"
             android:backgroundTint="@color/light_black"
             android:layout_marginHorizontal="80dp"
             android:paddingVertical="15dp"

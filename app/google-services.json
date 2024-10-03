@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "127752028933",
+    "project_id": "loja-virtual-28393",
+    "storage_bucket": "loja-virtual-28393.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127752028933:android:b282f8b9667bc5b63dad6c",
+        "android_client_info": {
+          "package_name": "com.yorran.lojavirtual"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-1N8criBMhHFmpsiG04Qtm9I2RQunYc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
