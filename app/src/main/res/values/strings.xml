@@ -11,6 +11,10 @@
         <big>HELLO!</big>\n<big><font color="#FF000000">WELCOME BACK</font></big>
     </string>
 
+    <string name="home_app">Make Home\n
+        <big>BEAUTIFUL</big>
+    </string>
+
     <string name="sing_in_wellcome"><big>WELCOME</big></string>
 
     <string name="apresentation_main_page">The best simple place where you discover most wonderful furnitures and make your home beautiful</string>
