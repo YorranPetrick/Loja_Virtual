@@ -18,5 +18,7 @@
     <string name="sing_in_wellcome"><big>WELCOME</big></string>
 
     <string name="apresentation_main_page">The best simple place where you discover most wonderful furnitures and make your home beautiful</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.yorran.lojavirtual.R
 import com.yorran.lojavirtual.databinding.ActivityHomeBinding
+import com.yorran.lojavirtual.dialog.PerfilDialog
 
 class HomeActivity : AppCompatActivity() {
 
@@ -43,6 +44,7 @@ class HomeActivity : AppCompatActivity() {
                 floatingFerramentas.setImageResource(R.drawable.drop_down)
             }
         }
+
     }
 
     private fun openFabMenu() {
@@ -53,6 +55,8 @@ class HomeActivity : AppCompatActivity() {
         floatingPerfil.animate().translationY(-300f).alpha(1f).setDuration(300).start()
 
         isOpen = true
+
+        onClick()
     }
 
     private fun closeFabMenu() {
@@ -64,5 +68,12 @@ class HomeActivity : AppCompatActivity() {
         }.start()
 
         isOpen = false
+    }
+
+    fun onClick(){
+        floatingPerfil.setOnClickListener {
+            val perfilDialog = PerfilDialog(this)
+            perfilDialog.iniciarDialog()
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.yorran.lojavirtual.models
 
 import android.util.Log
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,7 +17,7 @@ class DB {
         //Recuperando a Referencia do Banco de Dados
         val db = FirebaseFirestore.getInstance()
 
-        //Criando um HashMap com os dados do usuário
+        //Criando um HashMap com os dados do usuário que deseja salvar
         val data = hashMapOf(
             "nome" to nome
         )
@@ -41,6 +42,29 @@ class DB {
                 erro.printStackTrace()
             }
     }
+
+
+    fun recuperarDadosUsuario(nome: TextView, email: TextView){
+        val usuarioId = FirebaseAuth.getInstance().currentUser!!.uid //Recuperando o ID do usuário autenticado
+        val emailUser = FirebaseAuth.getInstance().currentUser!!.email //Recuperando o email
+        val db = FirebaseFirestore.getInstance() //Recuperando a instancia do FirebaseFirestore
+
+        val documentReference : DocumentReference = db.collection("Usuarios").document(usuarioId) //Recuperando a coleção com os dados do usuário
+
+        //Metodo para recuperar as informações
+        documentReference.addSnapshotListener { document, error ->
+            if (document != null){
+                nome.text = document.getString("nome") // Vai recuperar a informação baseado na chave nome
+                email.text = emailUser
+            }
+            else{
+                Log.d("FirebaseFirestore Documentation", "Erro recuperação dos dados FirebaseFirestore ")
+            }
+        }
+
+
+    }
+
 
     // Método para tratar os códigos de erro do FirebaseFirestoreException
     private fun obterMensagemErro(erro: Exception): String {
