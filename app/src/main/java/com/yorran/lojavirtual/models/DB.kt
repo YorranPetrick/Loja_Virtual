@@ -3,6 +3,7 @@ package com.yorran.lojavirtual.models
 import android.util.Log
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -61,7 +62,46 @@ class DB {
                 Log.d("FirebaseFirestore Documentation", "Erro recuperação dos dados FirebaseFirestore ")
             }
         }
+    }
 
+    fun atualizarDadosPerffil(nome: String, email: String){
+        val user = FirebaseAuth.getInstance().currentUser
+        val db = FirebaseFirestore.getInstance()
+
+        //Inicia a criação de uma solicitação de alteração de perfil.
+        val atualizarNome = UserProfileChangeRequest.Builder()
+            .setDisplayName(nome)
+            .build()
+
+        //Aplica a solicitação de alteração criada ao perfil do usuário.
+        user!!.updateProfile(atualizarNome).addOnCompleteListener {task ->
+            if (task.isSuccessful){
+                //Map com os dados a ser atualizados
+                val novoNome = mapOf(
+                    "nome" to nome
+                )
+
+                //Alteração dentro da coleção
+                db.collection("Usuarios").document(user.uid).update(novoNome)
+                Log.d("UpdateProfile", "Sucesso ao atualizar o perfil")
+            }
+
+            else{
+                Log.d("UpdateProfile", "Erro ao atualizar o perfil")
+            }
+
+        }
+
+        //Atualizando o email
+        user.verifyBeforeUpdateEmail(email).addOnCompleteListener {task ->
+            if (task.isSuccessful){
+                Log.d("updateEmail", "Sucesso ao atualizar")
+            }
+
+        }.addOnFailureListener {Exception->
+            Log.d("updateEmail", "Erro ao atualizar $Exception, ${obterMensagemErro(Exception)}")
+
+        }
 
     }
 

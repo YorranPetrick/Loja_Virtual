@@ -2,6 +2,7 @@ package com.yorran.lojavirtual.dialog
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.widget.TextView
 import com.yorran.lojavirtual.databinding.PerfilDialogBinding
 import com.yorran.lojavirtual.models.DB
@@ -21,11 +22,22 @@ class PerfilDialog(private val activity: Activity) {
 
         dadosUsuarios(binding.nomeUsuario, binding.emailUsuario)
 
+        binding.editarPerfil.setOnClickListener {
+            editarPerfil()
+        }
+
     }
 
     private fun dadosUsuarios(nome: TextView, email: TextView){
         val db = DB()
         db.recuperarDadosUsuario(nome, email)
+    }
+
+    //Inicializar nova dialog
+    private fun editarPerfil(){
+        val atualizarPerfil = AtualizarPerfilDialog(activity)
+        atualizarPerfil.iniciarDialog()
+        dialog.dismiss() //Finaliza a dialog atual
     }
 
 }

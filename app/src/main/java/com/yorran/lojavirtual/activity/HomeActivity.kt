@@ -6,14 +6,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.yorran.lojavirtual.R
+import com.yorran.lojavirtual.adapter.ProdutosAdapter
 import com.yorran.lojavirtual.databinding.ActivityHomeBinding
 import com.yorran.lojavirtual.dialog.PerfilDialog
+import com.yorran.lojavirtual.models.Produtos
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var adapterProduto: ProdutosAdapter
     private lateinit var floatingFerramentas: FloatingActionButton
     private lateinit var floatingCompras: FloatingActionButton
     private lateinit var floatingPerfil: FloatingActionButton
@@ -29,6 +34,28 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // Criando uma variável para receber o identificador do recycle de produtos
+        val recyclerView: RecyclerView = binding.RecycleProdutos
+        recyclerView.layoutManager = GridLayoutManager(this, 2) //Gerenciando o Tipo de layout
+        recyclerView.setHasFixedSize(true)
+
+        //Inicializando uma variavel para receber a lista de produtos
+        val productList = mutableListOf<Produtos>(
+            Produtos(R.drawable.teste1, "Black Simple Lamp", "$ 12"),
+            Produtos(R.drawable.teste2, "Minimal Stand", "$ 25"),
+            Produtos(R.drawable.teste3, "Coffee Chair", "$ 20"),
+            Produtos(R.drawable.teste4, "Simple Desk", "$ 50"),
+
+            Produtos(R.drawable.teste3, "Coffee Chai", "$ 20"),
+            Produtos(R.drawable.teste1, "Black Simple Lamp", "$ 12"),
+            Produtos(R.drawable.teste2, "Minimal Stand", "$ 25"),
+            Produtos(R.drawable.teste4, "Simple Desk", "$ 50"),
+        )
+
+        //Criando o Adapter com a lista de produtos
+        adapterProduto = ProdutosAdapter(this, productList)
+        recyclerView.adapter = adapterProduto
+
 
         //Botões do menu
         floatingFerramentas = binding.floatingFerramentas
